@@ -150,7 +150,7 @@ export default defineComponent({
       };
 
       const renderBody = () => {
-        const body = renderContent('default', 'body');
+        const body = renderContent('default', 'body'); // ?
         const bodyClassName =
           props?.theme === 'default' ? [`${COMPONENT_NAME.value}__body`] : [`${COMPONENT_NAME.value}__body__icon`];
         if (isFullScreen.value && footerContent) {

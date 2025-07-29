@@ -1,55 +1,69 @@
 <template>
-  <t-space>
-    <t-button theme="primary" @click="onClick">基础确认对话框</t-button>
-    <t-dialog
-      v-model:visible="visible"
-      header="对话框标题"
-      width="40%"
-      :confirm-on-enter="true"
-      :on-cancel="onCancel"
-      :on-esc-keydown="onEscKeydown"
-      :on-close-btn-click="onCloseBtnClick"
-      :on-overlay-click="onOverlayClick"
-      :on-close="close"
-      :on-confirm="onConfirmAnother"
+  <!-- <t-button @click="dialog1 = true">打开 Dialog 1</t-button>
+     <t-dialog
+      v-model:visible="dialog1"
+      header="Dialog 1"
+      attach="body"
+      destroy-on-close
     >
-      <t-space direction="vertical" style="width: 100%">
-        <div>
-          <p>这是弹框内容</p>
-          <p>This is Dialog Content</p>
-        </div>
-        <t-pagination v-model="current" v-model:pageSize="pageSize" :total="30" />
-      </t-space>
-    </t-dialog>
-  </t-space>
-</template>
-<script setup>
-import { ref } from 'vue';
+      <h1>这是 Dialog 1</h1><m-test />
+    </t-dialog> -->
 
-const visible = ref(false);
-const current = ref(1);
-const pageSize = ref(10);
-const onClick = (context) => {
-  console.log('点击了确认按钮，弹出弹窗', context);
-  visible.value = true;
-};
-const onConfirmAnother = (context) => {
-  console.log('点击了确认按钮', context);
-  visible.value = false;
-};
-const close = (context) => {
-  console.log('关闭弹窗，点击关闭按钮、按下ESC、点击蒙层等触发', context);
-};
-const onCancel = (context) => {
-  console.log('点击了取消按钮', context);
-};
-const onEscKeydown = (context) => {
-  console.log('按下了ESC', context);
-};
-const onCloseBtnClick = (context) => {
-  console.log('点击了关闭按钮', context);
-};
-const onOverlayClick = (context) => {
-  console.log('点击了蒙层', context);
-};
+  <button @click="visible = !visible">{{ visible ? '隐藏' : '显示' }}</button>
+  <comp :visible="visible" destroy-on-close>
+    <div id="parent">
+      <div class="t-dialog__mask"></div>
+      <div class="t-dialog__wrap">
+        <div class="t-dialog__position t-dialog--top">
+          <div class="t-dialog t-dialog__modal-default t-dialog--default t-dialog--top">
+            <div class="t-dialog__header">
+              <div class="t-dialog__header-content"><!---->Dialog 2</div>
+              <span class="t-dialog__close"
+                ><svg fill="none" viewBox="0 0 24 24" width="1em" height="1em" class="t-icon t-icon-close">
+                  <path
+                    fill="currentColor"
+                    d="M7.04996 5.63599L11.9997 10.5857L16.9494 5.63599L18.3637 7.0502L13.4139 11.9999L18.3637 16.9497L16.9494 18.3639L11.9997 13.4142L7.04996 18.3639L5.63574 16.9497L10.5855 11.9999L5.63574 7.0502L7.04996 5.63599Z"
+                  ></path></svg
+              ></span>
+            </div>
+            <div class="t-dialog__body">
+              <h1 data-v-ce0b6611="">
+                外层111
+                <test />
+              </h1>
+            </div>
+            <div class="t-dialog__footer">
+              <div>
+                <button
+                  class="t-button t-button--variant-base t-button--theme-default t-button--shape-rectangle t-dialog__cancel"
+                  type="button"
+                  href=""
+                  tabindex="0"
+                >
+                  <span class="t-button__text" style="z-index: 1">取消</span></button
+                ><button
+                  class="t-button t-button--variant-base t-button--theme-primary t-button--shape-rectangle t-dialog__confirm"
+                  type="button"
+                  href=""
+                  tabindex="0"
+                >
+                  <span class="t-button__text">确认</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </comp>
+</template>
+
+<script lang="js" setup>
+import { ref } from 'vue'
+//import mTest from './mTest.vue'
+import comp from './comp/index.jsx'
+import test from './comp/test.vue'
+
+const visible = ref(false)
+// const dialog1 = ref(false)
 </script>

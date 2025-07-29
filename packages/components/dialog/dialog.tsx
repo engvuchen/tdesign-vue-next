@@ -276,23 +276,23 @@ export default defineComponent({
       }
     });
 
-    return () => {
-      const maskView = (isModal.value || isFullScreen.value) && <div key="mask" class={maskClass.value}></div>;
-      const dialogView = renderDialog();
-      const view = [maskView, dialogView];
-      const ctxStyle = { zIndex: props.zIndex };
-      // dialog__ctx--fixed 绝对定位
-      // dialog__ctx--absolute 挂载在attach元素上 相对定位
-      // __ctx--modeless modeless 点击穿透
-      const ctxClass = [
-        `${COMPONENT_NAME.value}__ctx`,
-        {
-          [`${COMPONENT_NAME.value}__ctx--fixed`]: isModal.value || isFullScreen.value,
-          [`${COMPONENT_NAME.value}__ctx--absolute`]: isModal.value && props.showInAttachedElement,
-          [`${COMPONENT_NAME.value}__ctx--modeless`]: isModeLess.value,
-        },
-      ];
+    const maskView = (isModal.value || isFullScreen.value) && <div key="mask" class={maskClass.value}></div>;
+    const dialogView = renderDialog();
+    const view = [maskView, dialogView];
+    const ctxStyle = { zIndex: props.zIndex };
+    // dialog__ctx--fixed 绝对定位
+    // dialog__ctx--absolute 挂载在attach元素上 相对定位
+    // __ctx--modeless modeless 点击穿透
+    const ctxClass = [
+      `${COMPONENT_NAME.value}__ctx`,
+      {
+        [`${COMPONENT_NAME.value}__ctx--fixed`]: isModal.value || isFullScreen.value,
+        [`${COMPONENT_NAME.value}__ctx--absolute`]: isModal.value && props.showInAttachedElement,
+        [`${COMPONENT_NAME.value}__ctx--modeless`]: isModeLess.value,
+      },
+    ];
 
+    return () => {
       return (
         <Teleport disabled={!props.attach || !teleportElement.value} to={teleportElement.value}>
           <Transition
