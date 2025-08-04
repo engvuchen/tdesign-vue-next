@@ -263,7 +263,7 @@ export default defineComponent({
     });
 
     onBeforeUnmount(() => {
-      addKeyboardEvent(false);
+      // addKeyboardEvent(false);
       destroySelf();
     });
 

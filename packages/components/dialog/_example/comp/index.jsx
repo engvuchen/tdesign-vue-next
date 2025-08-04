@@ -32,8 +32,9 @@ export default {
     onMounted(() => {
       styleEl.value = document.createElement('style');
       styleEl.value.innerHTML = `
-            html body {
+             html body {
               overflow-y: hidden;
+              width: calc(100% - 200px);
             }
           `;
     });
